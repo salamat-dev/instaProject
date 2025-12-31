@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instagram Mobile UI - Tailwind</title>
+  <link rel="stylesheet" href="./output.css">
+</head>
+
+<style>
+  .story-seen {
+  background: #dbdbdb !important;
+  background-image: none !important;
+}
+
+.postAbs{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+
+@keyframes heartAnim {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+</style>
+
+<body class="bg-gray-100 flex justify-center">
+  <!-- Mobile Frame -->
+  <div id="firstDiv" class="w-[420px] bg-white min-h-screen flex flex-col relative">
+
+    <!-- Header -->
+    <header class="flex items-center justify-between px-4 py-3 border-b">
+      <h1 class="text-2xl font-bold">Instagram</h1>
+      <div class="flex items-center gap-4">
+        <svg class="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        <div class="relative">
+          <svg class="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 10-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">2</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Stories -->
+    <section class="w-full h-full px-4 py-3 overflow-hidden border-b">
+      <div class="slider h-full flex gap-[9px] w-[720px] select-none">
+              <!-- Your Story -->
+        <div class="flex flex-col items-center gap-1">
+          <figure class="relative cursor-pointer">
+            <img src="image/IMG_0747.JPG" alt="" class="w-16 h-16 rounded-full object-cover" />
+            <span class="absolute bottom-0 right-0 bg-blue-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center text-center">+</span>
+          </figure>
+          <span class="text-xs">Your Story</span>
+        </div>
+
+        <!-- Other Stories -->
+        <!-- reyhanehAvatar -->
+        <div class="flex flex-col items-center gap-1">
+          <figure class="reyhanehAvatar p-[2px] cursor-pointer rounded-full w-[68px] h-[68px] bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600">
+            <div class="w-full h-full rounded-full border-2 border-white bg-[url('image/reyAvatar.jpg')] bg-cover"></div>
+          </figure>
+          <span class="text-xs">reyhaneh.alt</span>
+        </div>
+
+        <!-- farzinAvatar -->
+        <div class="flex flex-col items-center gap-1">
+          <figure class="farzinAvatar p-[2px] cursor-pointer rounded-full w-[68px] h-[68px] bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600">
+            <div class="w-full h-full rounded-full border-2 border-white bg-[url('image/farAvatar.jpg')] bg-cover"></div>
+          </figure>
+          <span class="text-xs">farzin_dev</span>
+        </div>
+
+        <div class="flex flex-col items-center gap-1" >
+          <figure class="nastaranAvatar p-[2px] cursor-pointer rounded-full w-[68px] h-[68px] bg-cover bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600">
+            <div class="bg-[url('image/photo_2025-12-07_15-09-20.jpg')] w-full h-full border-2 border-white bg-cover rounded-full"></div>
+          </figure>
+          <span class="text-xs">nastaran__dev</span>
+        </div>
+
+        <!-- parsaAvatar -->
+        <div class="flex flex-col items-center gap-1">
+          <figure class="parsaAvatar p-[2px] cursor-pointer rounded-full w-[68px] h-[68px] bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600">
+            <div class="w-full h-full rounded-full border-2 border-white bg-[url('image/deh.jpg')] bg-cover"></div>
+          </figure>
+          <span class="text-xs">parsa_deh...</span>
+        </div>
+
+        <!-- yasamanAvatar -->
+        <div class="flex flex-col items-center gap-1">
+          <figure class="yasamanAvatar p-[2px] cursor-pointer rounded-full w-[68px] h-[68px] bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600">
+            <div class="w-full h-full rounded-full border-2 border-white bg-[url('image/yas.jpg')] bg-cover"></div>
+          </figure>
+          <span class="text-xs">yasaman_dev</span>
+        </div>
+
+
+        <div class="flex flex-col items-center gap-1">
+          <figure class="amiraliAvatar p-[2px] cursor-pointer rounded-full w-[68px] h-[68px] bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600">
+            <div class="w-full h-full rounded-full border-2 border-white bg-[url('image/amiAvatar.jpg')] bg-cover"></div>
+          </figure>
+          <span class="text-xs">setayeshm...</span>
+        </div>
+
+        <!-- hivaAvatar -->
+        <div class="flex flex-col items-center gap-1">
+          <figure class="hivaAvatar p-[2px] cursor-pointer rounded-full w-[68px] h-[68px] bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600">
+            <div class="w-full h-full rounded-full border-2 border-white bg-[url('image/hivaAvatar.jpg')] bg-cover"></div>
+          </figure>
+          <span class="text-xs">hivadi_dev</span>
+        </div>
+
+        <!-- pegahAvatar -->
+        <div class="flex flex-col items-center gap-1">
+          <figure class="pegahAvatar p-[2px] cursor-pointer rounded-full w-[68px] h-[68px] bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600">
+            <div class="w-full h-full rounded-full border-2 border-white bg-[url('image/pegAvatar.jpg')] bg-cover"></div>
+          </figure>
+          <span class="text-xs">pegahmoba...</span>
+        </div>
+
+      </div>
+      
+    </section>
+    <!-- Post -->
+     
+    <main class="flex-1">
+      <article class="border-b">
+        <!-- Post Header -->
+        <div class="flex items-center justify-between px-4 py-3">
+          <figure class="flex items-center gap-3 cursor-pointer">
+            <img src="image/IMG_20251227_194423_767.jpg" alt="" class="w-9 h-9 rounded-full" />
+            <span class="font-semibold text-sm">parsa_ghorbanian_web</span>
+          </figure>
+          <span class="text-xl font-bold cursor-pointer">•••</span>
+        </div>
+
+        <!-- Post Video -->
+        <div class="relative w-full h-[500px]">
+          <video id="postVideo" class="w-full h-[500px] object-cover cursor-pointer"autoplay muted loop playsinline>
+            <source src="image/VID_20251231_114300_027.mp4" type="video/mp4">
+          </video>
+        
+          <div id="soundToggle" class="absolute bottom-4 right-3 bg-black bg-opacity-50 rounded-full p-1 text-center cursor-pointer">
+
+            <svg id="mutedIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              <line x1="1" y1="1" x2="23" y2="23"></line>
+            </svg>
+          
+            <svg id="unmutedIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 hidden">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+          </div>
+          <img class="heart absolute w-[100px] h-[100px] left-[160px] top-[170px] hidden" src="image/Heart_corazón.svg.png" alt="">
+
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center justify-between px-4 py-3">
+          <div class="flex gap-4">
+            <svg class="like w-7 h-7 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 10-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            <svg class="w-7 h-7 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 16a2 2 0 01-2 2H5l-4 4V4a2 2 0 012-2h16a2 2 0 012 2v12z"/></svg>
+            <svg class="w-7 h-7 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8"/></svg>
+          </div>
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5v14l7-5 7 5V5z"/></svg>
+        </div>
+
+        <!-- Likes -->
+        <div class="px-4 text-sm font-semibold mb-1"><span id="likeCount">1,034 </span><span>likes</span></div>
+
+        <!-- Caption -->
+        <div class="px-4 pb-3 text-sm">
+          <span class="font-semibold">parsa_ghorbanian_web</span><br>
+          <span class="text-gray-800">  دیدم بعضی وقتها سوالاتی در رابطه با الگوریتم های گاربج کالکتور میشه،مخصوصا الگوریتم <br>mark and sweep <br>🌹 خدمت شما</span>
+        </div>
+      </article>
+    </main>
+
+    <!-- Your Profile -->
+<div id="myProfile" class="absolute top-0 left-0 w-full h-full inset-0 bg-white hidden flex flex-col z-50 font-sans">
+  <!-- Header -->
+  <div class="flex items-center justify-between px-4 py-3 border-b">
+    <button id="backFromProfile" class="text-2xl cursor-pointer">←</button>
+    <h2 class="font-semibold">salamat_dev</h2>
+    <svg class="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </div>
+
+  <!-- Profile Header Section -->
+  <div class="px-4 pt-6 pb-4">
+    <div class="flex items-center gap-6">
+      <!-- Profile Picture -->
+      <figure class="relative">
+        <img src="image/IMG_0747.JPG" alt="Your Profile" class="w-24 h-24 rounded-full object-cover"/>
+        <!-- + Icon for Highlights -->
+        <div class="absolute bottom-0 right-0 bg-blue-500 rounded-full w-6 h-6 flex items-center justify-center">
+          <span class="text-white text-2xl mb-1">+</span>
+        </div>
+      </figure>
+
+      <!-- Stats -->
+      <div class="flex-1 grid grid-cols-3 text-center">
+        <div>
+          <div class="font-bold text-xl">0</div>
+          <div class="text-sm text-gray-600">posts</div>
+        </div>
+        <div>
+          <div class="font-bold text-xl">93</div>
+          <div class="text-sm text-gray-600">followers</div>
+        </div>
+        <div>
+          <div class="font-bold text-xl">51</div>
+          <div class="text-sm text-gray-600">following</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Name & Bio -->
+    <div class="mt-4">
+      <h3 class="font-semibold text-[#5555559f] text-base">Web Desingner</h3>
+      <p class="text-sm mt-1">Learning...<br>Front-end Developer <br>Parnian School</p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex gap-3 mt-4">
+      <button class="flex-1 py-2 bg-gray-200 rounded-lg font-semibold">Edit Profile</button>
+      <button class="flex-1 py-2 bg-gray-200 rounded-lg font-semibold">Share Profile</button>
+    </div>
+  </div>
+
+  <!-- No Posts Yet -->
+  <div class="flex-1 flex flex-col items-center justify-center text-gray-400 pb-20">
+    <div class="w-24 h-24 border-4 border-gray-300 rounded-full flex items-center justify-center mb-4">
+      <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+      </svg>
+    </div>
+    <h3 class="text-xl font-semibold">No Posts Yet</h3>
+  </div>
+</div>
+
+    <!-- Bottom Navigation -->
+    <nav id="navBtn" class="flex items-center justify-between px-6 py-3 border-t bg-white sticky bottom-0 z-50">
+      <svg id="homeIcon" class="w-7 h-7 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+      <svg class="w-7 h-7 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z"/></svg>
+      <svg class="w-7 h-7 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+      <svg class="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 10-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      <img src="image/IMG_0747.JPG" alt="" class="w-9 h-9 rounded-full cursor-pointer" />
+    </nav>
+
+    <!--srories -->
+    <figure class="nastaranStory absolute left-0 top-0 w-full h-[100vh] hidden">
+        <img id="fullWatchStory" class="absolute top-0 left-0 w-full h-full" src="image/storyNas1.jpg" alt="">
+        <ul class="w-full h-[20px] flex justify-between gap-1 absolute left-0 top-0 mt-2">
+            <li class="bg-[rgba(255,255,255,0.68)] w-[50%] rounded-[1px] h-[2px] list-none relative">
+                <span class="storyBars flex w-0 h-[2px] rounded-[1px] bg-white absolute bottom-0 left-0 transition-all duration-[5000ms] ease-linear"></span><img class="hidden" src="image/storyNas1.jpg" alt="">
+            </li>
+            <li class="bg-[rgba(255,255,255,0.675)] w-[50%] rounded-[1px] h-[2px] list-none relative">
+                <span class="storyBars flex w-0 h-[2px] rounded-[1px] bg-white absolute bottom-0 left-0 transition-all duration-[5000ms] ease-linear"></span><img class="hidden" src="image/storyNas2.jpg" alt="">
+            </li>
+        </ul>
+        <div class="right absolute cursor-pointer top-0 right-0 h-full w-[10%]"></div>
+        <div class="left absolute cursor-pointer top-0 left-0 h-full w-[10%]"></div>
+        <img class="absolute top-[15px] left-[15px] object-cover w-[40px] h-[40px] rounded-full" src="image/photo_2025-12-07_15-09-20.jpg" alt="">
+        <span class="absolute top-[22px] left-[62px] text-white">nastaran__dev</span>
+        <!-- Story Bottom Actions - Like Real Instagram -->
+      <div class="absolute bottom-0 left-0 w-full px-4 pb-6 flex items-center justify-between pointer-events-none">
+      
+        <!-- Fake Reply Input (Middle) -->
+        <div class="flex-1 mx-4 pointer-events-auto">
+          <div class="bg-white bg-opacity-20 rounded-full px-4 py-3 flex items-center">
+            <span class="text-white text-sm">Send message</span>
+          </div>
+        </div>
+      
+        <!-- Like Heart (Right) -->
+        <svg class="storyLike w-8 h-8 cursor-pointer pointer-events-auto" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 10-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+        </svg>
+      </div>
+    </figure>
+
+
+    <figure class="parsaStory absolute left-0 top-0 w-full h-[100vh] hidden">
+        <img id="fullWatchStoryParsa" class="absolute top-0 left-0 w-full h-full" src="image/parStory.jpg" alt="">
+        <ul class="w-full h-[20px] flex justify-between gap-1 absolute left-0 top-0 mt-2">
+            <li class="bg-[rgba(255,255,255,0.675)] w-[50%] rounded-[1px] h-[2px] list-none relative">
+                <span class="storyBars flex w-0 h-[2px] rounded-[1px] bg-white absolute bottom-0 left-0 transition-all duration-[5000ms] ease-linear"></span><img class="hidden" src="image/parStory.jpg" alt="">
+            </li>
+        </ul>
+        <div class="right absolute cursor-pointer top-0 right-0 h-full w-[10%]"></div>
+        <div class="left absolute cursor-pointer top-0 left-0 h-full w-[10%]"></div>
+        <img class="absolute top-[15px] left-[15px] object-cover w-[40px] h-[40px] rounded-full" src="image/deh.jpg" alt="">
+        <span class="absolute top-[22px] left-[62px] text-white">parsa_dehghanpour_dev</span>
+
+      <div class="absolute bottom-0 left-0 w-full px-4 pb-6 flex items-center justify-between pointer-events-none">
+
+        <svg class="w-8 h-8 cursor-pointer pointer-events-auto" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+        </svg>
+      
+        <div class="flex-1 mx-4 pointer-events-auto">
+          <div class="bg-white bg-opacity-20 rounded-full px-4 py-3 flex items-center">
+            <span class="text-white text-sm">Send message</span>
+          </div>
+        </div>
+      
+        <svg class="storyLike w-8 h-8 cursor-pointer pointer-events-auto" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 10-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+        </svg>
+      </div>
+    </figure>
+
+    <figure class="yasamanStory absolute left-0 top-0 w-full h-[100vh] hidden">
+        <img id="fullWatchStoryYasaman" class="absolute top-0 left-0 w-full h-full" src="image/yasStory.jpg" alt="">
+        <ul class="w-full h-[20px] flex justify-between gap-1 absolute left-0 top-0 mt-2">
+            <li class="bg-[rgba(255,255,255,0.68)] w-[50%] rounded-[1px] h-[2px] list-none relative">
+                <span class="storyBars flex w-0 h-[2px] rounded-[1px] bg-white absolute bottom-0 left-0 transition-all duration-[5000ms] ease-linear"></span><img class="hidden" src="image/yasStory.jpg" alt="">
+            </li>
+        </ul>
+        <div class="right absolute cursor-pointer top-0 right-0 h-full w-[10%]"></div>
+        <div class="left absolute cursor-pointer top-0 left-0 h-full w-[10%]"></div>
+        <img class="absolute top-[15px] left-[15px] object-cover w-[40px] h-[40px] rounded-full" src="image/yas.jpg" alt="">
+        <span class="absolute top-[22px] left-[62px] text-white">yasaman_dev</span>
+        
+      <div class="absolute bottom-0 left-0 w-full px-4 pb-6 flex items-center justify-between pointer-events-none">
+        
+        <svg class="w-8 h-8 cursor-pointer pointer-events-auto" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+        </svg>
+      
+        <div class="flex-1 mx-4 pointer-events-auto">
+          <div class="bg-white bg-opacity-20 rounded-full px-4 py-3 flex items-center">
+            <span class="text-white text-sm">Send message</span>
+          </div>
+        </div>
+      
+        <svg class="storyLike w-8 h-8 cursor-pointer pointer-events-auto" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 10-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+        </svg>
+      </div>
+    </figure>
+
+    <figure class="reyhanehStory absolute left-0 top-0 w-full h-[100vh] hidden">
+        <video id="fullWatchStoryReyhaneh" class="w-full h-full object-cover">
+          <source src="image/reyStory.mp4" type="video/mp4">
+        </video>
+        <ul class="w-full h-[20px] flex justify-between gap-1 absolute left-0 top-0 mt-2">
+            <li class="bg-[rgba(255,255,255,0.68)] w-[50%] rounded-[1px] h-[2px] list-none relative">
+                <span class="storyBars flex w-0 h-[2px] rounded-[1px] bg-white absolute bottom-0 left-0 transition-all duration-[5000ms] ease-linear"></span><video class="hidden" src="image/reyStory.mp4" alt="">
+            </li>
+        </ul>
+        <div class="right absolute cursor-pointer top-0 right-0 h-full w-[10%]"></div>
+        <div class="left absolute cursor-pointer top-0 left-0 h-full w-[10%]"></div>
+        <img class="absolute top-[15px] left-[15px] object-cover w-[40px] h-[40px] rounded-full" src="image/reyAvatar.jpg" alt="">
+        <span class="absolute top-[22px] left-[62px] text-white">reyhaneh.alt</span>
+
+      <div class="absolute bottom-0 left-0 w-full px-4 pb-6 flex items-center justify-between pointer-events-none">
+
+        <svg class="w-8 h-8 cursor-pointer pointer-events-auto" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+        </svg>
+
+        <div class="flex-1 mx-4 pointer-events-auto">
+          <div class="bg-white bg-opacity-20 rounded-full px-4 py-3 flex items-center">
+            <span class="text-white text-sm">Send message</span>
+          </div>
+        </div>
+      
+        <svg class="storyLike w-8 h-8 cursor-pointer pointer-events-auto" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 10-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+        </svg>
+      </div>      
+    </figure>
+
+    <figure class="amiraliStory absolute left-0 top-0 w-full h-[100vh] hidden">
+        <img id="fullWatchStoryAmirali" class="absolute top-0 left-0 w-full h-full" src="image/anirStory.jpg" alt="">
+        <ul class="w-full h-[20px] flex justify-between gap-1 absolute left-0 top-0 mt-2">
+            <li class="bg-[rgba(255,255,255,0.68)] w-[50%] rounded-[1px] h-[2px] list-none relative">
+                <span class="storyBars flex w-0 h-[2px] rounded-[1px] bg-white absolute bottom-0 left-0 transition-all duration-[5000ms] ease-linear"></span><img class="hidden" src="image/anirStory.jpg" alt="">
+            </li>
+        </ul>
+        <div class="right absolute cursor-pointer top-0 right-0 h-full w-[10%]"></div>
+        <div class="left absolute cursor-pointer top-0 left-0 h-full w-[10%]"></div>
+        <img class="absolute top-[15px] left-[15px] object-cover w-[40px] h-[40px] rounded-full" src="image/amiAvatar.jpg" alt="">
+        <span class="absolute top-[22px] left-[62px] text-white">setayeshmehr.dev</span>
+    
+      <div class="absolute bottom-0 left-0 w-full px-4 pb-6 flex items-center justify-between pointer-events-none">
+      
+        <svg class="w-8 h-8 cursor-pointer pointer-events-auto" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+        </svg>
+      
+        
+        <div class="flex-1 mx-4 pointer-events-auto">
+          <div class="bg-white bg-opacity-20 rounded-full px-4 py-3 flex items-center">
+            <span class="text-white text-sm">Send message</span>
+          </div>
+        </div>
+      
+      
+        <svg class="storyLike w-8 h-8 cursor-pointer pointer-events-auto" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 10-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+        </svg>
+      </div>
+    </figure>
+
+    <figure class="farzinStory absolute left-0 top-0 w-full h-[100vh] hidden">
+        <img id="fullWatchStoryFarzin" class="absolute top-0 left-0 w-full h-full" src="image/farStory.jpg" alt="">
+        <ul class="w-full h-[20px] flex justify-between gap-1 absolute left-0 top-0 mt-2">
+            <li class="bg-[rgba(255,255,255,0.68)] w-[50%] rounded-[1px] h-[2px] list-none relative">
+                <span class="storyBars flex w-0 h-[2px] rounded-[1px] bg-white absolute bottom-0 left-0 transition-all duration-[5000ms] ease-linear"></span><img class="hidden" src="image/farStory.jpg" alt="">
+            </li>
+        </ul>
+        <div class="right absolute cursor-pointer top-0 right-0 h-full w-[10%]"></div>
+        <div class="left absolute cursor-pointer top-0 left-0 h-full w-[10%]"></div>
+        <img class="absolute top-[15px] left-[15px] object-cover w-[40px] h-[40px] rounded-full" src="image/farAvatar.jpg" alt="">
+        <span class="absolute top-[22px] left-[62px] text-white">farzin_n1991</span>
+        
+      <div class="absolute bottom-0 left-0 w-full px-4 pb-6 flex items-center justify-between pointer-events-none">
+
+        <svg class="w-8 h-8 cursor-pointer pointer-events-auto" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+        </svg>
+      
+  
+        <div class="flex-1 mx-4 pointer-events-auto">
+          <div class="bg-white bg-opacity-20 rounded-full px-4 py-3 flex items-center">
+            <span class="text-white text-sm">Send message</span>
+          </div>
+        </div>
+      
+    
+        <svg class="storyLike w-8 h-8 cursor-pointer pointer-events-auto" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 10-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+        </svg>
+      </div>
+    </figure>
+
+    <figure class="hivaStory absolute left-0 top-0 w-full h-[100vh] hidden">
+        <img id="fullWatchStoryHiva" class="absolute top-0 left-0 w-full h-full" src="image/hivStory.jpg" alt="">
+        <ul class="w-full h-[20px] flex justify-between gap-1 absolute left-0 top-0 mt-2">
+            <li class="bg-[rgba(255,255,255,0.68)] w-[50%] rounded-[1px] h-[2px] list-none relative">
+                <span class="storyBars flex w-0 h-[2px] rounded-[1px] bg-white absolute bottom-0 left-0 transition-all duration-[5000ms] ease-linear"></span><img class="hidden" src="image/hivStory.jpg" alt="">
+            </li>
+        </ul>
+        <div class="right absolute cursor-pointer top-0 right-0 h-full w-[10%]"></div>
+        <div class="left absolute cursor-pointer top-0 left-0 h-full w-[10%]"></div>
+        <img class="absolute top-[15px] left-[15px] object-cover w-[40px] h-[40px] rounded-full" src="image/hivaAvatar.jpg" alt="">
+        <span class="absolute top-[22px] left-[62px] text-white">hivadi.dev</span>
+    
+      <div class="absolute bottom-0 left-0 w-full px-4 pb-6 flex items-center justify-between pointer-events-none">
+        
+        <svg class="w-8 h-8 cursor-pointer pointer-events-auto" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+        </svg>
+      
+      
+        <div class="flex-1 mx-4 pointer-events-auto">
+          <div class="bg-white bg-opacity-20 rounded-full px-4 py-3 flex items-center">
+            <span class="text-white text-sm">Send message</span>
+          </div>
+        </div>
+      
+  
+        <svg class="storyLike w-8 h-8 cursor-pointer pointer-events-auto" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 10-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+        </svg>
+      </div>
+    </figure>
+
+    <figure class="pegahStory absolute left-0 top-0 w-full h-[100vh] hidden">
+        <img id="fullWatchStoryPegah" class="absolute top-0 left-0 w-full h-full" src="image/pegStory.jpg" alt="">
+        <ul class="w-full h-[20px] flex justify-between gap-1 absolute left-0 top-0 mt-2">
+            <li class="bg-[rgba(255,255,255,0.68)] w-[50%] rounded-[1px] h-[2px] list-none relative">
+                <span class="storyBars flex w-0 h-[2px] rounded-[1px] bg-white absolute bottom-0 left-0 transition-all duration-[5000ms] ease-linear"></span><img class="hidden" src="image/pegStory.jpg" alt="">
+            </li>
+        </ul>
+        <div class="right absolute cursor-pointer top-0 right-0 h-full w-[10%]"></div>
+        <div class="left absolute cursor-pointer top-0 left-0 h-full w-[10%]"></div>
+        <img class="absolute top-[15px] left-[15px] object-cover w-[40px] h-[40px] rounded-full" src="image/pegAvatar.jpg" alt="">
+        <span class="absolute top-[22px] left-[62px] text-white">pegahmobasherii</span>
+      
+        <div class="absolute bottom-0 left-0 w-full px-4 pb-6 flex items-center justify-between pointer-events-none">
+          
+          <svg class="w-8 h-8 cursor-pointer pointer-events-auto" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+        
+      
+          <div class="flex-1 mx-4 pointer-events-auto">
+            <div class="bg-white bg-opacity-20 rounded-full px-4 py-3 flex items-center">
+              <span class="text-white text-sm">Send message</span>
+            </div>
+          </div>
+        
+    
+          <svg class="storyLike w-8 h-8 cursor-pointer pointer-events-auto" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 10-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+          </svg>
+        </div>
+
+      </figure>
+</div>
+  </div>
+
+</body>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => { //از ai دیدم Domcontent رو
+
+  const slider = document.querySelector(".slider");
+  const section = slider.parentElement; 
+
+  let isDragging = false;
+  let startX = 0;
+  let currentTranslate = 0;
+
+  const navBtn = document.getElementById('navBtn');
+
+  slider.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    startX = e.clientX;
+    slider.style.cursor = "grabbing";
+  });
+
+  slider.addEventListener("mousemove", (e) => { // همش رو نه ولی کمک گرفتم از ai
+    if (!isDragging) return;
+
+    const deltaX = e.clientX - startX;
+
+    const sectionWidth = section.offsetWidth;
+    const sliderWidth = slider.scrollWidth;
+
+    const maxTranslate = 0;
+    const minTranslate = sectionWidth - sliderWidth;
+
+    let nextTranslate = currentTranslate + deltaX;
+
+    if (nextTranslate > maxTranslate) {
+      nextTranslate = maxTranslate;
+    }
+
+    if (nextTranslate < minTranslate) {
+      nextTranslate = minTranslate;
+    }
+
+    slider.style.transform = 'translateX(' + nextTranslate + 'px)';
+  });
+
+  document.addEventListener("mouseup", (e) => {
+    if (!isDragging) return;
+
+    const deltaX = e.clientX - startX;
+
+    const sectionWidth = section.offsetWidth;
+    const sliderWidth = slider.scrollWidth;
+
+    const maxTranslate = 0;
+    const minTranslate = sectionWidth - sliderWidth;
+
+    currentTranslate += deltaX;
+
+    if (currentTranslate > maxTranslate) {
+      currentTranslate = maxTranslate;
+    }
+
+    if (currentTranslate < minTranslate) {
+      currentTranslate = minTranslate;
+    }
+
+    slider.style.transform = 'translateX('+ currentTranslate +' px)';
+
+    isDragging = false;
+    slider.style.cursor = "grab";
+  });
+
+
+  const usersStories = [
+    { avatar: document.querySelector('.reyhanehAvatar'), story: document.querySelector('.reyhanehStory'), li: document.querySelectorAll('.reyhanehStory>ul>li'), turn: 0, timeoutId: null, right: document.querySelector('.reyhanehStory .right'), left: document.querySelector('.reyhanehStory .left'), fullImg: document.getElementById('fullWatchStoryReyhaneh') },
+    { avatar: document.querySelector('.farzinAvatar'), story: document.querySelector('.farzinStory'), li: document.querySelectorAll('.farzinStory>ul>li'), turn: 0, timeoutId: null, right: document.querySelector('.farzinStory .right'), left: document.querySelector('.farzinStory .left'), fullImg: document.getElementById('fullWatchStoryFarzin') },
+    { avatar: document.querySelector('.nastaranAvatar'), story: document.querySelector('.nastaranStory'), li: document.querySelectorAll('.nastaranStory>ul>li'), turn: 0, timeoutId: null, right: document.querySelector('.nastaranStory .right'), left: document.querySelector('.nastaranStory .left'), fullImg: document.getElementById('fullWatchStory') },
+    { avatar: document.querySelector('.parsaAvatar'), story: document.querySelector('.parsaStory'), li: document.querySelectorAll('.parsaStory>ul>li'), turn: 0, timeoutId: null, right: document.querySelector('.parsaStory .right'), left: document.querySelector('.parsaStory .left'), fullImg: document.getElementById('fullWatchStoryParsa') },
+    { avatar: document.querySelector('.yasamanAvatar'), story: document.querySelector('.yasamanStory'), li: document.querySelectorAll('.yasamanStory>ul>li'), turn: 0, timeoutId: null, right: document.querySelector('.yasamanStory .right'), left: document.querySelector('.yasamanStory .left'), fullImg: document.getElementById('fullWatchStoryYasaman') },
+    { avatar: document.querySelector('.amiraliAvatar'), story: document.querySelector('.amiraliStory'), li: document.querySelectorAll('.amiraliStory>ul>li'), turn: 0, timeoutId: null, right: document.querySelector('.amiraliStory .right'), left: document.querySelector('.amiraliStory .left'), fullImg: document.getElementById('fullWatchStoryAmirali') },
+    { avatar: document.querySelector('.hivaAvatar'), story: document.querySelector('.hivaStory'), li: document.querySelectorAll('.hivaStory>ul>li'), turn: 0, timeoutId: null, right: document.querySelector('.hivaStory .right'), left: document.querySelector('.hivaStory .left'), fullImg: document.getElementById('fullWatchStoryHiva') },
+    { avatar: document.querySelector('.pegahAvatar'), story: document.querySelector('.pegahStory'), li: document.querySelectorAll('.pegahStory>ul>li'), turn: 0, timeoutId: null, right: document.querySelector('.pegahStory .right'), left: document.querySelector('.pegahStory .left'), fullImg: document.getElementById('fullWatchStoryPegah') }
+  ];
+
+  let currentUserIndex = -1;
+
+  function showStory(userIndex, storyIndex) {
+
+    if (currentUserIndex !== -1 && currentUserIndex !== userIndex) {
+        const prevUser = usersStories[currentUserIndex];
+        prevUser.story.classList.add('hidden');
+        clearTimeout(prevUser.timeoutId);
+
+    if (prevUser.fullImg.tagName.toLowerCase() === 'video') {
+        prevUser.fullImg.pause();
+        prevUser.fullImg.currentTime = 0; 
+      }
+    }
+
+    currentUserIndex = userIndex;
+    const user = usersStories[userIndex];
+
+
+    user.turn = storyIndex;
+    user.story.classList.remove('hidden');
+    document.getElementById('firstDiv').style.height = '100vh';
+    document.getElementById('firstDiv').style.overflow = 'hidden';
+    navBtn.style.display = 'none';
+    mutedIcon.classList.remove('hidden');
+    unmutedIcon.classList.add('hidden');
+    postVideo.currentTime = 0;
+    postVideo.muted = true;
+    user.avatar.classList.add('story-seen');
+    user.avatar.classList.remove('bg-gradient-to-tr', 'from-yellow-400', 'via-pink-500', 'to-purple-600');
+
+    const count = user.li.length;
+    const width = 100 / count;
+    user.li.forEach(li => {
+      li.style.width = width + '%';
+    });
+
+    const isVideo = user.fullImg.tagName.toLowerCase() === 'video';
+    const newSrc = user.li[storyIndex].querySelector('img, video').src;
+
+    if (isVideo) {
+      const source = user.fullImg.querySelector('source');
+      if (source) source.src = newSrc;
+      user.fullImg.load();
+      user.fullImg.currentTime = 0;
+      user.fullImg.play();
+    } else {
+      user.fullImg.src = newSrc;
+    }
+
+    user.li.forEach((item, i) => {
+      const bar = item.children[0];
+      bar.style.transition = 'none';
+      if (i < storyIndex) {
+        bar.style.width = '100%';
+      } else {
+        bar.style.width = '0%';
+      }
+    });
+
+    setTimeout(() => {
+      const currentBar = user.li[storyIndex].children[0];
+      if (isVideo) {
+        currentBar.style.transition = '17s linear';
+      } else {
+        currentBar.style.transition = '5s linear';
+      }
+      currentBar.style.width = '100%';
+    }, 50);
+
+    clearTimeout(user.timeoutId);
+
+    let time = isVideo ? 17000 : 5000;
+
+    user.timeoutId = setTimeout(() => {
+      goNext();
+    }, time);
+  }
+
+  function goNext() {
+    if (currentUserIndex === -1) return;
+
+    const user = usersStories[currentUserIndex];
+    clearTimeout(user.timeoutId);  
+
+    if (user.turn < user.li.length - 1) {
+      showStory(currentUserIndex, user.turn + 1);
+    } else {
+      user.avatar.classList.add('story-seen');
+      user.avatar.classList.remove('bg-gradient-to-tr', 'from-yellow-400', 'via-pink-500', 'to-purple-600');
+
+      const next = currentUserIndex + 1;
+      if (next < usersStories.length) {
+        showStory(next, 0);
+      } else {
+        usersStories.forEach(u => {
+          u.story.classList.add('hidden');
+          clearTimeout(u.timeoutId);
+          u.li.forEach(item => {
+            item.children[0].style.width = '0%';
+            item.children[0].style.transition = 'none';
+          });
+          u.turn = 0;
+        });
+        currentUserIndex = -1;
+        document.getElementById('firstDiv').style.height = '';
+        document.getElementById('firstDiv').style.overflow = '';
+        navBtn.style.display = 'flex';
+      }
+    }
+  }
+
+  function goPrevious() {
+  if (currentUserIndex === -1) return;
+
+  const user = usersStories[currentUserIndex];
+  clearTimeout(user.timeoutId);
+
+  if (user.turn > 0) {
+    showStory(currentUserIndex, user.turn - 1);
+  } else {
+    const prevUserIndex = currentUserIndex - 1;
+    if (prevUserIndex >= 0) {
+      const prevUser = usersStories[prevUserIndex];
+      const lastStoryIndex = prevUser.li.length - 1;
+      showStory(prevUserIndex, lastStoryIndex);
+    }
+  }
+}
+
+usersStories.forEach((user, index) => {
+  let startX = 0;
+  let startY = 0;
+  let movedTooMuch = false;
+
+  user.avatar.addEventListener('mousedown', (e) => {
+    startX = e.clientX;
+    startY = e.clientY;
+    movedTooMuch = false;
+  });
+
+  user.avatar.addEventListener('mousemove', (e) => {
+    if (movedTooMuch) return;
+
+    const deltaX = Math.abs(e.clientX - startX);
+    const deltaY = Math.abs(e.clientY - startY);
+
+    if (deltaX > 2 || deltaY > 2) {
+      movedTooMuch = true;
+    }
+  });
+
+  user.avatar.addEventListener('mouseup', (e) => {
+    if (!movedTooMuch) {
+      showStory(index, 0);
+    }
+  });
+
+  user.avatar.addEventListener('mouseleave', () => {
+    movedTooMuch = true;
+  });
+
+  user.right.addEventListener('click', () => {
+    goNext();
+  });
+
+  user.left.addEventListener('click', () => {
+    goPrevious();
+  });
+});
+
+  let isSwipingDown = false;
+  let startY = 0;
+
+  document.addEventListener('mousedown', (e) => {
+    if (currentUserIndex !== -1) {
+      startY = e.clientY;
+      isSwipingDown = true;
+    }
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isSwipingDown) return;
+
+    const deltaY = e.clientY - startY;
+
+    if (deltaY > 30) {
+      if (currentUserIndex !== -1) {
+        const currentUser = usersStories[currentUserIndex];
+
+        if (currentUser.fullImg.tagName.toLowerCase() === 'video') {
+          currentUser.fullImg.pause();
+          currentUser.fullImg.currentTime = 0;
+        }
+
+        usersStories.forEach(u => {
+          u.story.classList.add('hidden');
+          clearTimeout(u.timeoutId);
+          u.li.forEach(item => {
+            item.children[0].style.width = '0%';
+            item.children[0].style.transition = 'none';
+          });
+          u.turn = 0;
+        });
+        
+        document.getElementById('firstDiv').style.height = '';
+        document.getElementById('firstDiv').style.overflow = '';
+        navBtn.style.display = 'flex';
+
+        currentUserIndex = -1;
+      }
+
+      isSwipingDown = false;
+    }
+  });
+
+  document.addEventListener('mouseup', () => {
+    isSwipingDown = false;
+  });
+
+  });
+
+const postVideo = document.getElementById('postVideo');
+const soundToggle = document.getElementById('soundToggle');
+const mutedIcon = document.getElementById('mutedIcon');
+const unmutedIcon = document.getElementById('unmutedIcon');
+
+soundToggle.addEventListener('click', () => {
+  if (postVideo.muted) {
+    postVideo.muted = false;
+    mutedIcon.classList.add('hidden');
+    unmutedIcon.classList.remove('hidden');
+  } else {
+    postVideo.muted = true;
+    mutedIcon.classList.remove('hidden');
+    unmutedIcon.classList.add('hidden');
+  }
+});
+
+const likeIcon = document.querySelector('.like');
+const heartImg = document.querySelector('.heart');
+const likesCount = document.getElementById('likeCount');
+
+let currentLikes = 1034;
+let isLiked = false; 
+
+function toggleLike() {
+  if (isLiked) {
+    
+    currentLikes--;
+    isLiked = false;
+    likeIcon.style.fill = '';      // از ai دیدم
+    likeIcon.style.stroke = 'currentColor';
+  } else {
+    // like
+    currentLikes++;
+    isLiked = true;
+    likeIcon.style.fill = 'red';   
+    likeIcon.style.stroke = 'red';
+
+    heartImg.classList.remove('hidden');
+    heartImg.style.animation = 'heartAnim 1s ease-out forwards';
+
+    setTimeout(() => {
+      heartImg.classList.add('hidden');
+      heartImg.style.animation = '';
+    }, 1000);
+  }
+
+  
+  likesCount.textContent = currentLikes.toLocaleString();
+}
+
+postVideo.addEventListener('dblclick', toggleLike);
+
+likeIcon.addEventListener('click', toggleLike);
+
+const homeIcon = document.getElementById('homeIcon'); 
+const myProfileBtn = document.querySelector('nav img.rounded-full'); 
+const myProfile = document.getElementById('myProfile');
+const backFromProfile = document.getElementById('backFromProfile');
+const firstDiv = document.getElementById('firstDiv');
+
+
+myProfileBtn.addEventListener('click', () => {
+  myProfile.classList.remove('hidden');
+
+  postVideo.muted = true;
+  postVideo.pause();
+  mutedIcon.classList.remove('hidden');
+  unmutedIcon.classList.add('hidden');
+});
+
+
+homeIcon.addEventListener('click', () => {
+  myProfile.classList.add('hidden');       
+  firstDiv.style.display = 'flex';
+  
+  postVideo.currentTime = 0;
+  postVideo.play();
+  
+  mutedIcon.classList.remove('hidden');
+  unmutedIcon.classList.add('hidden');
+});
+
+backFromProfile.addEventListener('click', () => {
+  myProfile.classList.add('hidden');
+  firstDiv.style.display = 'flex';
+
+  postVideo.currentTime = 0;
+  postVideo.play();
+});
+
+// اینم حال نداشتم دیگه آخرای پروژه بود دادم ai
+document.querySelectorAll('.storyLike').forEach(likeBtn => {
+  likeBtn.addEventListener('click', (e) => {
+    const story = e.target.closest('figure');
+
+    e.target.style.fill = 'red';
+    e.target.style.stroke = 'red';
+
+  });
+});
+</script>
+
+
+</html>
