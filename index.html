@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instagram Mobile UI - Tailwind</title>
+  <link rel="stylesheet" href="./output.css">
+
+  <style>
+    /* Gradient ring around avatars with a new story */
+    .story-ring {
+      padding: 2px;
+      border-radius: 9999px;
+      background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+    }
+
+    /* Grey ring after the story is seen */
+    .story-ring.seen {
+      background: #dbdbdb;
+    }
+
+    /* Hide scrollbars but keep scrolling */
+    .no-scrollbar {
+      scrollbar-width: none;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Big heart on double click */
+    @keyframes heartAnim {
+      0% { transform: scale(0); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 0; }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- App frame: full width on mobile, 420px from lg up -->
+  <div id="app" class="relative mx-auto flex h-dvh w-full flex-col overflow-hidden bg-white lg:w-[420px] lg:border-x lg:border-gray-200">
+
+    <!-- ========== Home page ========== -->
+    <div id="homePage" class="no-scrollbar min-h-0 flex-1 overflow-y-auto">
+
+      <!-- Header (not fixed, scrolls with the page) -->
+      <header class="flex h-14 items-center justify-between border-b border-gray-200 px-4">
+        <h1 class="text-2xl font-bold">Instagram</h1>
+        <div class="flex items-center gap-5">
+          <svg class="h-6 w-6 cursor-pointer" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+          <div class="relative">
+            <svg class="h-6 w-6 cursor-pointer" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 20.25c-.35 0-8.75-4.85-8.75-10.6A4.9 4.9 0 0 1 8.1 4.75c1.7 0 3 .9 3.9 2.35.9-1.45 2.2-2.35 3.9-2.35a4.9 4.9 0 0 1 4.85 4.9c0 5.75-8.4 10.6-8.75 10.6Z"/></svg>
+            <span class="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#ff3040] text-[10px] font-bold text-white">2</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Stories (filled by script.js) -->
+      <section class="border-b border-gray-200">
+        <ul id="storyTray" class="no-scrollbar flex cursor-grab select-none gap-3 overflow-x-auto px-3 py-3"></ul>
+      </section>
+
+      <!-- Post (filled by script.js) -->
+      <main id="postBox"></main>
+    </div>
+
+    <!-- ========== Profile page (filled by script.js) ========== -->
+    <div id="profilePage" class="no-scrollbar hidden min-h-0 flex-1 overflow-y-auto"></div>
+
+    <!-- ========== Bottom navigation (inside the frame) ========== -->
+    <nav class="flex h-12 shrink-0 items-center justify-around border-t border-gray-200 bg-white">
+      <svg id="homeIcon" class="h-6 w-6 cursor-pointer" fill="currentColor" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 21v-5.5a3 3 0 0 1 6 0V21h6V10.6L12 2.5 3 10.6V21Z"/></svg>
+      <svg class="h-6 w-6 cursor-pointer" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m16.2 16.2 5.3 5.3"/></svg>
+      <svg class="h-6 w-6 cursor-pointer" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><path d="M12 7.5v9M7.5 12h9"/></svg>
+      <svg class="h-6 w-6 cursor-pointer" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 20.25c-.35 0-8.75-4.85-8.75-10.6A4.9 4.9 0 0 1 8.1 4.75c1.7 0 3 .9 3.9 2.35.9-1.45 2.2-2.35 3.9-2.35a4.9 4.9 0 0 1 4.85 4.9c0 5.75-8.4 10.6-8.75 10.6Z"/></svg>
+      <img id="profileBtn" src="image/IMG_0747.JPG" alt="" class="h-7 w-7 cursor-pointer rounded-full object-cover p-[2px]" />
+    </nav>
+
+    <!-- ========== Story viewer (only one, for all users) ========== -->
+    <div id="storyViewer" class="absolute inset-0 z-50 hidden select-none bg-black">
+      <!-- Media: only one of them is visible at a time -->
+      <img id="storyImg" class="absolute inset-0 h-full w-full object-cover" alt="" draggable="false" />
+      <video id="storyVideo" class="absolute inset-0 hidden h-full w-full object-cover" playsinline></video>
+
+      <!-- Dark gradient behind the top bar -->
+      <div class="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/60 to-transparent"></div>
+
+      <!-- Top: progress bars + user info -->
+      <div class="absolute inset-x-0 top-0 px-2 pt-2">
+        <div id="storyBars" class="flex gap-1"></div>
+        <div class="mt-3 flex items-center gap-2 px-1 text-white">
+          <img id="storyAvatar" class="h-8 w-8 rounded-full object-cover" alt="" />
+          <span id="storyName" class="text-sm font-semibold"></span>
+          <button id="closeStory" class="ml-auto text-white">
+            <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Bottom: message input + like -->
+      <div class="absolute inset-x-0 bottom-0 flex items-center gap-4 bg-gradient-to-t from-black/60 to-transparent p-3">
+        <input id="storyInput" type="text" placeholder="Send message"
+          class="h-11 min-w-0 flex-1 rounded-full border border-white/70 bg-transparent px-4 text-sm text-white placeholder-white/80 outline-none focus:border-white" />
+        <svg id="storyLike" class="h-7 w-7 cursor-pointer text-white" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 20.25c-.35 0-8.75-4.85-8.75-10.6A4.9 4.9 0 0 1 8.1 4.75c1.7 0 3 .9 3.9 2.35.9-1.45 2.2-2.35 3.9-2.35a4.9 4.9 0 0 1 4.85 4.9c0 5.75-8.4 10.6-8.75 10.6Z"/></svg>
+      </div>
+    </div>
+
+    <!-- ========== Comments sheet (opens from the bottom) ========== -->
+    <div id="commentSheet" class="absolute inset-0 z-40 hidden">
+      <!-- Dark background, click to close -->
+      <div id="sheetBackdrop" class="absolute inset-0 bg-black/50"></div>
+
+      <div id="sheetPanel" class="absolute inset-x-0 bottom-0 flex h-[78%] translate-y-full flex-col rounded-t-2xl bg-white transition-transform duration-300">
+        <div class="border-b border-gray-200 pb-3 pt-2 text-center">
+          <span class="mx-auto mb-3 block h-1 w-10 rounded-full bg-gray-300"></span>
+          <h2 class="font-semibold">Comments</h2>
+        </div>
+
+        <!-- Comment list (filled by script.js) -->
+        <ul id="commentList" class="flex-1 overflow-y-auto px-4"></ul>
+
+        <!-- Write a comment -->
+        <div class="flex items-center gap-3 border-t border-gray-200 px-4 py-3">
+          <img src="image/IMG_0747.JPG" alt="" class="h-9 w-9 rounded-full object-cover" />
+          <input id="commentInput" type="text" dir="auto" placeholder="Add a comment..." class="min-w-0 flex-1 text-sm outline-none" />
+          <button id="commentBtn" class="text-sm font-semibold text-[#0095f6]">Post</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
